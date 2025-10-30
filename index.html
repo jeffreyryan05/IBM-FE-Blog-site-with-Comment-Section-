@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insightful Journeys: Exploring the World of Ideas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: #333;
+            overflow-x: hidden;
+            position: relative
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3)0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3)0%, transparent 50%), radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3)0%, transparent 50%);
+            pointer-events: none
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            animation: fadeInUp 1s ease-out
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3)
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #e0f7ff;
+            margin-top: 10px;
+            animation: fadeInUp 1.2s ease-out
+        }
+
+        .blog-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            animation: slideInDown 1.5s ease-out;
+            flex-wrap: wrap;
+            gap: 10px
+        }
+
+        .blog-nav-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform .3s, box-shadow .3s, background .3s
+        }
+
+        .blog-nav-btn:hover {
+            transform: translateY(-3px)scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #764ba2, #f093fb)
+        }
+
+        .blog-nav-btn.active {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4)
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            display: none;
+            animation: slideInLeft 1s ease-out
+        }
+
+        .blog-post.active {
+            display: block;
+            animation: fadeInUp .6s ease-out
+        }
+
+        .blog-post h2 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3)
+        }
+
+        .blog-post p {
+            line-height: 1.8;
+            color: #f0f8ff;
+            font-size: 1.1em
+        }
+
+        .post-author {
+            color: #e0f7ff;
+            margin: 8px 0 12px;
+            font-style: italic
+        }
+
+        .comments-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            animation: slideInRight 1.5s ease-out;
+            margin-top: 20px
+        }
+
+        .comments-section h3 {
+            color: #fff;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3)
+        }
+
+        .comment {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform .3s, box-shadow .3s;
+            animation: fadeInUp .5s ease-out
+        }
+
+        .comment:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #e0f7ff
+        }
+
+        .comment-text {
+            color: #f0f8ff;
+            margin-top: 5px
+        }
+
+        .add-comment {
+            margin-top: 20px
+        }
+
+        .add-comment input,
+        .add-comment textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #333;
+            font-size: 1em;
+            margin-bottom: 10px;
+            transition: background .3s
+        }
+
+        .add-comment input:focus,
+        .add-comment textarea:focus {
+            background: rgba(255, 255, 255, 0.3);
+            outline: none
+        }
+
+        .add-comment textarea {
+            resize: vertical
+        }
+
+        .add-comment button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform .3s, box-shadow .3s
+        }
+
+        .add-comment button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3)
+        }
+
+        .add-blog-btn {
+            display: block;
+            margin: 10px auto 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform .3s, box-shadow .3s
+        }
+
+        .add-blog-btn:hover {
+            transform: translateY(-3px)scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2)
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+            z-index: 999;
+            transition: all .3s
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px)saturate(180%);
+            -webkit-backdrop-filter: blur(25px)saturate(180%);
+            padding: 28px 32px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 560px;
+            color: #fff;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            animation: fadeInUp .5s ease-out
+        }
+
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            transition: all .2s
+        }
+
+        .modal-content input::placeholder,
+        .modal-content textarea::placeholder {
+            color: rgba(255, 255, 255, 0.85)
+        }
+
+        .modal-content input:focus,
+        .modal-content textarea:focus {
+            background: rgba(255, 255, 255, 0.28);
+            outline: 2px solid rgba(255, 255, 255, 0.6)
+        }
+
+        .modal-content .modal-actions {
+            text-align: right
+        }
+
+        .modal-content .modal-actions button {
+            margin-left: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            transition: all .2s
+        }
+
+        .modal-content .modal-actions button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3)
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 12px
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #ff4e50, #f9d423);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 10px
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Insightful Journeys</h1>
+            <p class="subtitle">Exploring the World of Ideas</p>
+        </header>
+        <nav class="blog-navigation" id="nav-bar"></nav>
+        <button class="add-blog-btn" id="addBlogBtn">+ Add Blog</button>
+        <div id="posts-wrapper"></div>
+    </div>
+    <div class="modal" id="blogModal">
+        <div class="modal-content">
+            <h2>Add New Blog</h2>
+            <p style="font-size:0.9em;opacity:0.9">Admin Password for Demo: <b>admin123</b></p>
+            <input id="newTitle" placeholder="Blog title">
+            <textarea id="newContent" rows="7" placeholder="Write your blog content..."></textarea>
+            <div class="modal-actions">
+                <button id="cancelAdd">Cancel</button>
+                <button id="postAdd">Post Blog</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const ADMIN_PASS = 'admin123'
+            const initialBlogs = [
+                { title: "The Power of Innovation in Modern Society", content: `<p>Innovation is the driving force behind progress. From the invention of the wheel to the latest advancements in artificial intelligence, human creativity has continually shaped our world. In today's fast-paced environment, embracing innovation isn't just beneficial—it's essential. Companies that foster a culture of creativity often lead their industries, while individuals who think outside the box find new opportunities.</p><p>Consider the impact of technology on daily life. Smartphones, once a luxury, are now indispensable tools that connect us globally. Yet, with great power comes great responsibility. As we innovate, we must also consider ethical implications, ensuring that progress benefits society as a whole.</p><p>Looking ahead, the future holds endless possibilities. Renewable energy solutions, personalized medicine, and sustainable agriculture are just a few areas poised for breakthroughs. By encouraging curiosity and collaboration, we can unlock potential that seems limitless.</p>`, author: "Admin", comments: [] },
+                { title: "Embracing Sustainable Living for a Better Tomorrow", content: `<p>Sustainability is no longer a buzzword—it's a necessity. As our planet faces unprecedented challenges from climate change, adopting sustainable practices in our daily lives can make a significant difference. From reducing waste to choosing eco-friendly products, small changes accumulate into powerful impacts.</p><p>Renewable energy sources like solar and wind power are revolutionizing how we generate electricity. Communities worldwide are transitioning to greener alternatives, reducing reliance on fossil fuels and lowering carbon emissions. This shift not only protects the environment but also creates new job opportunities in emerging industries.</p><p>Beyond energy, sustainable living encompasses mindful consumption. Opting for locally sourced foods, minimizing plastic use, and supporting circular economy principles help preserve resources for future generations. Education and awareness play crucial roles in fostering a global movement toward sustainability.</p>`, author: "Admin", comments: [] },
+                { title: "Navigating the Latest Tech Trends", content: `<p>Technology evolves at a breakneck pace, shaping industries and lifestyles alike. From artificial intelligence to blockchain, staying informed about emerging trends is key to remaining competitive. AI, in particular, is transforming sectors from healthcare to finance, offering unprecedented efficiency and insights.</p><p>The rise of the Internet of Things (IoT) connects devices in ways that enhance convenience and productivity. Smart homes, wearable tech, and autonomous vehicles are just the beginning. However, with connectivity comes the need for robust cybersecurity measures to protect personal data.</p><p>As we look to the future, quantum computing and augmented reality promise even more groundbreaking developments. Embracing these technologies while addressing ethical concerns will ensure they serve humanity's best interests.</p>`, author: "Admin", comments: [] }]
+            const STORAGE_KEY = 'insightful_blogs_secure'
+            function loadBlogs() { try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) { localStorage.setItem(STORAGE_KEY, JSON.stringify(initialBlogs)); return initialBlogs.slice() } else { return JSON.parse(raw) } } catch (e) { return initialBlogs.slice() } }
+            function saveBlogs(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)) }
+            let blogs = loadBlogs()
+            const navBar = document.getElementById('nav-bar'), postsWrapper = document.getElementById('posts-wrapper'), addBtn = document.getElementById('addBlogBtn'), modal = document.getElementById('blogModal'), newTitle = document.getElementById('newTitle'), newContent = document.getElementById('newContent'), cancelAdd = document.getElementById('cancelAdd'), postAdd = document.getElementById('postAdd')
+            function renderNav() { navBar.innerHTML = ''; blogs.forEach((b, i) => { const btn = document.createElement('button'); btn.className = 'blog-nav-btn'; btn.textContent = b.title; btn.onclick = () => showPost(i); navBar.appendChild(btn) }); setActiveNav(0) }
+            function setActiveNav(i) { navBar.querySelectorAll('button').forEach((b, idx) => b.classList.toggle('active', idx === i)) }
+            function escapeHtml(s) { return s ? s.replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])) : '' }
+            function renderPosts(active = 0) { postsWrapper.innerHTML = ''; blogs.forEach((b, i) => { const sec = document.createElement('section'); sec.className = 'blog-post'; sec.id = 'p' + i; const h2 = document.createElement('h2'); h2.textContent = b.title; const auth = document.createElement('div'); auth.className = 'post-author'; auth.textContent = 'Author: ' + b.author; const cont = document.createElement('div'); cont.innerHTML = b.content; const e = document.createElement('button'); e.className = 'edit-btn'; e.textContent = 'Edit'; e.onclick = () => requireAdmin(() => toggleEdit(i, h2, cont, e)); const d = document.createElement('button'); d.className = 'delete-btn'; d.textContent = 'Delete'; d.onclick = () => requireAdmin(() => deleteBlog(i)); const com = document.createElement('div'); com.className = 'comments-section'; const h3 = document.createElement('h3'); h3.textContent = 'Comments'; const list = document.createElement('div'); (b.comments || []).forEach(c => { const cdiv = document.createElement('div'); cdiv.className = 'comment'; cdiv.innerHTML = `<div class='comment-author'>${escapeHtml(c.name)}</div><div class='comment-text'>${escapeHtml(c.text)}</div>`; list.appendChild(cdiv) }); const add = document.createElement('div'); add.className = 'add-comment'; add.innerHTML = `<input id='n${i}' placeholder='Your Name'><textarea id='t${i}' placeholder='Add your comment...'></textarea><button>Post</button>`; add.querySelector('button').onclick = () => { const name = document.getElementById('n' + i).value || 'Anonymous', txt = document.getElementById('t' + i).value; if (!txt) return; blogs[i].comments.push({ name, text: txt }); saveBlogs(blogs); renderNav(); renderPosts(i); showPost(i) }; com.append(h3, list, add); sec.append(h2, auth, cont, e, d, com); postsWrapper.appendChild(sec) }); showPost(active) }
+            function showPost(i) { document.querySelectorAll('.blog-post').forEach((p, idx) => p.classList.toggle('active', idx === i)); setActiveNav(i) }
+            function toggleEdit(i, t, c, b) { const edit = b.classList.contains('save'); if (!edit) { t.contentEditable = c.contentEditable = true; b.textContent = 'Save'; b.classList.add('save') } else { t.contentEditable = c.contentEditable = false; blogs[i].title = t.textContent.trim() || 'Untitled'; blogs[i].content = c.innerHTML; saveBlogs(blogs); b.textContent = 'Edit'; b.classList.remove('save'); renderNav(); renderPosts(i); showPost(i) } }
+            function deleteBlog(i) { if (confirm('Delete this blog permanently?')) { blogs.splice(i, 1); saveBlogs(blogs); renderNav(); renderPosts(0) } }
+            function requireAdmin(fn) { const pass = prompt('Enter Admin Password (hint: admin123)'); if (pass === ADMIN_PASS) fn(); else alert('Access denied') }
+            addBtn.onclick = () => { modal.style.display = 'flex'; newTitle.value = ''; newContent.value = '' }
+            cancelAdd.onclick = () => modal.style.display = 'none'
+            postAdd.onclick = () => { const t = newTitle.value.trim(), c = newContent.value.trim(); if (!t || !c) return; const html = c.split(/\n+/).map(p => `<p>${escapeHtml(p)}</p>`).join(''); blogs.push({ title: t, content: html, author: 'Admin', comments: [] }); saveBlogs(blogs); modal.style.display = 'none'; renderNav(); renderPosts(blogs.length - 1); showPost(blogs.length - 1) }
+            modal.onclick = e => { if (e.target === modal) modal.style.display = 'none' }
+            renderNav(); renderPosts(0)
+        })();
+    </script>
+</body>
+
+</html>
